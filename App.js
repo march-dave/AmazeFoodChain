@@ -25,8 +25,8 @@ export default class App extends Component<Props> {
   }
 
   async componentDidMount() {
-    // const deals = await api.fetchInitialDeals();
-    const deals = await api.fetchInitialChangePoint();
+    const deals = await api.fetchInitialDeals();
+    // const deals = await api.fetchInitialChangePoint();
     console.log('deals:-----' + deals);
     
       // fetch('https://facebook.github.io/react-native/movies.json')

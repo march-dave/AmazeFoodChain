@@ -1,4 +1,4 @@
-import chp from 'chainpoint-client/dist/bundle.web.js';
+// import chp from 'chainpoint-client/dist/bundle.web.js';
 
 const apiHost = 'https://fast-woodland-70297.herokuapp.com/nextBlock';
 
@@ -9,7 +9,6 @@ export default {
                             Accept: 'application/json',
                             'Content-Type': 'application/json',
                           } } );
-                        // let responseJson = await response.json();
             return response;
         } catch (error) {
             console.log(error);
