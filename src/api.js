@@ -18,7 +18,7 @@ export default {
 }
 
 // export default {
-//     async fetchInitialDeals () {
+//     async fetchInitialChangePoint () {
 //         // A few sample SHA-256 proofs to anchor
 //         let hashes = ['2d2a9e92b561440e8d27a21eed114f7018105db00262af7d7087f7dea9986b0a','3d2a9e92b561440e8d27a21eed114f7018105db00262af7d7087f7dea9986b0a']
         

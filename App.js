@@ -16,8 +16,6 @@ import {
 import QRCodeScanner from 'react-native-qrcode-scanner';
 import SHA256 from 'crypto-js/sha256';
 import api from './src/api';
-// import chp from 'chainpoint-client';
-
 
 type Props = {};
 export default class App extends Component<Props> {
@@ -27,7 +25,8 @@ export default class App extends Component<Props> {
   }
 
   async componentDidMount() {
-    const deals = await api.fetchInitialDeals();
+    // const deals = await api.fetchInitialDeals();
+    const deals = await api.fetchInitialChangePoint();
     console.log('deals:-----' + deals);
     
       // fetch('https://facebook.github.io/react-native/movies.json')
@@ -55,7 +54,6 @@ export default class App extends Component<Props> {
         onRead={this.onSuccess.bind(this)}
         topContent={
           <Text style={styles.centerText}>
-            Header
             {/* Go to <Text style={styles.textBold}>wikipedia.org/wiki/QR_code</Text> on your computer and scan the QR code. */}
           </Text>
         }
