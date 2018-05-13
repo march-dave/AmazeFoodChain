@@ -14,6 +14,9 @@ import {
   View
 } from 'react-native';
 import QRCodeScanner from 'react-native-qrcode-scanner';
+import SHA256 from 'crypto-js/sha256';
+// import chp from 'chainpoint-client';
+
 
 type Props = {};
 export default class App extends Component<Props> {
@@ -22,13 +25,35 @@ export default class App extends Component<Props> {
     info: ''
   }
 
+  componentDidMount()
+  {
+      fetch('https://facebook.github.io/react-native/movies.json')
+      .then((response) => response.json() )
+      .then((responseJson) => {
+        console.log(responseJson.movies)
+        console.log('com: ' +  SHA256(responseJson.movies)  )
+
+      //   this.setState({
+      //     isLoading: false,
+      //     dataSource: responseJson.movies,
+      //   }, function(){
+
+      //   });
+
+      })
+      .catch((error) =>{
+        console.error(error);
+      });
+  }
+
   onSuccess(e) {
     this.setState( {info: e.data} ) 
-
     // Linking
     //   .openURL(e.data)
     //   .catch(err => console.error('An error occured', err));
+    // runIt();
   }
+
   render() {
     return (
       <QRCodeScanner
@@ -46,7 +71,8 @@ export default class App extends Component<Props> {
 
         bottomContent={
           <TouchableOpacity style={styles.buttonTouchable}>
-            <Text style={styles.buttonText}>{this.state.info}!</Text>
+            <Text style={styles.buttonText}>{this.state.info}</Text>
+            <Text>{this.state.info}</Text>
           </TouchableOpacity>
         }
       />
