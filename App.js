@@ -15,6 +15,7 @@ import {
 } from 'react-native';
 import QRCodeScanner from 'react-native-qrcode-scanner';
 import SHA256 from 'crypto-js/sha256';
+import api from './src/api';
 // import chp from 'chainpoint-client';
 
 
@@ -25,25 +26,19 @@ export default class App extends Component<Props> {
     info: ''
   }
 
-  componentDidMount()
-  {
-      fetch('https://facebook.github.io/react-native/movies.json')
-      .then((response) => response.json() )
-      .then((responseJson) => {
-        console.log(responseJson.movies)
-        console.log('com: ' +  SHA256(responseJson.movies)  )
-
-      //   this.setState({
-      //     isLoading: false,
-      //     dataSource: responseJson.movies,
-      //   }, function(){
-
-      //   });
-
-      })
-      .catch((error) =>{
-        console.error(error);
-      });
+  async componentDidMount() {
+    const deals = await api.fetchInitialDeals();
+    console.log('deals:-----' + deals);
+    
+      // fetch('https://facebook.github.io/react-native/movies.json')
+      // .then((response) => response.json() )
+      // .then((responseJson) => {
+      //   console.log(responseJson.movies)
+      //   console.log('com: ' +  SHA256(responseJson.movies)  )
+      // })
+      // .catch((error) =>{
+      //   console.error(error);
+      // });
   }
 
   onSuccess(e) {
@@ -60,7 +55,8 @@ export default class App extends Component<Props> {
         onRead={this.onSuccess.bind(this)}
         topContent={
           <Text style={styles.centerText}>
-            Go to <Text style={styles.textBold}>wikipedia.org/wiki/QR_code</Text> on your computer and scan the QR code.
+            Header
+            {/* Go to <Text style={styles.textBold}>wikipedia.org/wiki/QR_code</Text> on your computer and scan the QR code. */}
           </Text>
         }
         // bottomContent={
@@ -72,7 +68,6 @@ export default class App extends Component<Props> {
         bottomContent={
           <TouchableOpacity style={styles.buttonTouchable}>
             <Text style={styles.buttonText}>{this.state.info}</Text>
-            <Text>{this.state.info}</Text>
           </TouchableOpacity>
         }
       />
